@@ -12,6 +12,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 
+const anywayBaseUrl = 'https://anyway.co.il';
+
 module.exports = {
   context: sourcePath,
   entry: {
@@ -172,7 +174,18 @@ module.exports = {
       disableDotRule: true
     },
     stats: 'minimal',
-    clientLogLevel: 'warning'
+    clientLogLevel: 'warning',
+    https: true,
+    proxy: {
+      '/markers': {
+        target: anywayBaseUrl,
+        secure: true,
+        changeOrigin: true,
+        headers: {
+          'referer': anywayBaseUrl
+        }
+      }
+    },    
   },
   // https://webpack.js.org/configuration/devtool/
   devtool: isProduction ? 'hidden-source-map' : 'cheap-module-eval-source-map',
