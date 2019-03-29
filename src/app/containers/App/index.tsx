@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as style from './style.css';
 import { Map } from '../Map';
+import { Menu } from '../Menu'; 
 
 //leaflet initialization
 import * as Leaflet from 'leaflet';
@@ -31,6 +32,7 @@ export class App extends React.Component<Props> {
       return (
         <div className={style.container}>
           <Map />
+          <Menu />
         </div>
       );
     }
